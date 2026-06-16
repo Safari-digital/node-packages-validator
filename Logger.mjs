@@ -13,14 +13,10 @@ export default class Logger {
     /**
      * End a trace process and output the log
      * @param {string} processId Unique identifier for the process
-     * @param {string} message Final message to log (optional)
      */
-    static endTrace(processId, message) {
+    static endTrace(processId) {
         if (!Logger.logStack[processId]) {
             return;
-        }
-        if (message) {
-            Logger.logStack[processId].push(`[${processId}] ${message}`);
         }
         Logger.logStack[processId].push(Logger.separator);
         for (const line of Logger.logStack[processId]) {
@@ -44,7 +40,7 @@ export default class Logger {
             Logger.logStack[processId].push(
                 Logger.traceTypes[type]
                     ? [Logger.traceTypes[type], `[${processId}] ${message}`]
-                    : `[${processId}] ${message}`
+                    : `[${processId}] ${message}`,
             );
         }
     }

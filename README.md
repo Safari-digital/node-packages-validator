@@ -1,15 +1,20 @@
-<!-- markdownlint-disable-next-line -->
-<p align="center">
-    <img width="200" src="https://raw.githubusercontent.com/Safari-digital/.github/refs/heads/main/assets/logo-2025.svg" alt="Safari Digital Logo">
-</p>
-<p>
-    Node.js package validator that detects and flags potentially malicious dependencies.
-</p>
-
 ## Installation
 
 This library is designed to be used as submodule. To install it, run the following command:
 
 ```bash
-git submodule add git@github.com:Safari-digital/node-packages-validator.git ./packages/node-packages-validator
+git submodule add git@github.com:digital-net-org/node-packages-validator.git ./packages/node-packages-validator
 ```
+
+## Usage
+
+```bash
+node ./packages/node-packages-validator/validate-package-lock.mjs [options]
+```
+
+### Options
+
+- `--pnpm` — validate a `pnpm-lock.yaml` instead of a `package-lock.json`.
+- `--monorepo` — recursively scan every `package.json` and lockfile of the
+  repository (ignoring `node_modules`, `.git` and hidden directories) and
+  validate them all in a single pass.
