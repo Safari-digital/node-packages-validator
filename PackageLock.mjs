@@ -169,7 +169,12 @@ export default class PackageLock {
         for (const group of groups) {
             if (!group) continue;
             for (const [name, range] of Object.entries(group)) {
-                index[name] = { version: String(range).replace(/^[\s^~>=<]+/, '').trim(), resolved: '' };
+                index[name] = {
+                    version: String(range)
+                        .replace(/^[\s^~>=<]+/, '')
+                        .trim(),
+                    resolved: '',
+                };
             }
         }
 
@@ -228,7 +233,7 @@ export default class PackageLock {
             if (!versions) {
                 Logger.traceWarning(
                     processId,
-                    `${label}${pkg} => compromised package found!!! (${data.version} - ${resolved})`,
+                    `${label}${pkg} => compromised package found!!! (${data.version} - ${resolved})`
                 );
                 errorCount++;
                 continue;
@@ -238,7 +243,7 @@ export default class PackageLock {
             if (versionSet.has(data.version) || versions.some(v => resolved.includes(`-${v}.tgz`))) {
                 Logger.traceWarning(
                     processId,
-                    `${label}${pkg} => ${data.version} compromised version found!!! (${resolved})`,
+                    `${label}${pkg} => ${data.version} compromised version found!!! (${resolved})`
                 );
                 errorCount++;
             }
@@ -280,7 +285,7 @@ export default class PackageLock {
                 processId,
                 this.usePnpm
                     ? `Please remove your pnpm-lock.yaml file and node_modules folder, clean your pnpm store using 'pnpm store prune' and fix your package.json dependencies before reinstalling everything using 'pnpm install'`
-                    : `Please remove your package-lock.json file and node_modules folder, clean your npm cache using 'npm cache clean --force' and fix your package.json dependencies before reinstalling everything using 'npm install'`,
+                    : `Please remove your package-lock.json file and node_modules folder, clean your npm cache using 'npm cache clean --force' and fix your package.json dependencies before reinstalling everything using 'npm install'`
             );
         }
         Logger.endTrace(processId);

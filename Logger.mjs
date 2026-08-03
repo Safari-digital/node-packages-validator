@@ -40,7 +40,7 @@ export default class Logger {
             Logger.logStack[processId].push(
                 Logger.traceTypes[type]
                     ? [Logger.traceTypes[type], `[${processId}] ${message}`]
-                    : `[${processId}] ${message}`,
+                    : `[${processId}] ${message}`
             );
         }
     }
