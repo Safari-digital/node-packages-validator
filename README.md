@@ -4,8 +4,7 @@
 </p>
 
 <p align="center">
-    Supply-chain guard for Safari Digital JS/TS projects — audits npm & pnpm lockfiles
-    against the <a href="https://github.com/DataDog/malicious-software-packages-dataset">DataDog malicious packages dataset</a>.
+    Supply-chain guard for JS/TS projects : audits npm & pnpm lockfiles against the <a href="https://github.com/DataDog/malicious-software-packages-dataset">DataDog malicious packages dataset</a>.
 </p>
 
 ---
@@ -15,8 +14,6 @@
 ```bash
 pnpm add -D github:Safari-digital/node-packages-validator
 ```
-
-No peer dependencies — the validator only uses the Node standard library.
 
 ## Usage
 
@@ -39,20 +36,17 @@ Wire it into `package.json` so it runs alongside the rest of the checks:
 
 ### Options
 
-| Option        | Effect                                                                                                                                                    |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| _(none)_      | Validate the `package-lock.json` of the current directory.                                                                                                 |
-| `--pnpm`      | Validate a `pnpm-lock.yaml` instead of a `package-lock.json`.                                                                                              |
-| `--monorepo`  | Walk up to the repository root, then recursively validate every `package.json` and lockfile it finds — `node_modules`, `.git` and hidden folders excluded. |
-
-`--pnpm` and `--monorepo` combine; in monorepo mode the lockfile flavour is
-detected per file, so `--pnpm` then only tunes the remediation hint.
+| Option       | Effect                                                                                                                                                    |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _(none)_     | Validate the `package-lock.json` of the current directory.                                                                                                |
+| `--pnpm`     | Validate a `pnpm-lock.yaml` instead of a `package-lock.json`.                                                                                             |
+| `--monorepo` | Walk up to the repository root, then recursively validate every `package.json` and lockfile it finds. `node_modules`, `.git` and hidden folders excluded. |
 
 ### Exit codes
 
-| Code | Meaning                                                                        |
-|------|--------------------------------------------------------------------------------|
-| `0`  | Nothing matched the compromised list.                                          |
+| Code | Meaning                                                                                                    |
+|------|------------------------------------------------------------------------------------------------------------|
+| `0`  | Nothing matched the compromised list.                                                                      |
 | `1`  | At least one compromised package was found, a file could not be read, or the dataset could not be fetched. |
 
 The check fails closed: an unreachable dataset or an unparsable lockfile is
@@ -62,18 +56,18 @@ reported as a failure rather than silently passing. It needs network access to
 ## What gets checked
 
 A package is reported when its **name** appears in the dataset and either the
-dataset lists no version (every version is malicious) or the exact installed
+dataset lists no version *(wich means every version is malicious)* or the exact installed
 version matches. Every version of a package present in the tree is checked, not
 just the first one.
 
-| Source              | Read from                                                                       |
-|---------------------|---------------------------------------------------------------------------------|
-| `package-lock.json` | `packages` (lockfileVersion 2 & 3) and the legacy `dependencies` tree (v1)      |
-| `pnpm-lock.yaml`    | the top-level `packages:` section (pnpm v5 through v9 key formats)              |
-| `package.json`      | `dependencies`, `devDependencies`, `optionalDependencies`, `peerDependencies`   |
+| Source              | Read from                                                                     |
+|---------------------|-------------------------------------------------------------------------------|
+| `package-lock.json` | `packages` (lockfileVersion 2 & 3) and the legacy `dependencies` tree (v1)    |
+| `pnpm-lock.yaml`    | the top-level `packages:` section (pnpm v5 through v9 key formats)            |
+| `package.json`      | `dependencies`, `devDependencies`, `optionalDependencies`, `peerDependencies` |
 
-`package.json` files are only scanned in `--monorepo` mode. Their versions are
-ranges, so the range operator is stripped before comparison — treat those hits
+> `package.json` files are only scanned in `--monorepo` mode. Their versions are
+ranges, so the range operator is stripped before comparison. Treat those hits
 as a weaker signal than a lockfile hit.
 
 ## Programmatic use
