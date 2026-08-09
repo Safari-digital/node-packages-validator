@@ -4,8 +4,7 @@
 </p>
 
 <p align="center">
-    Supply-chain guard for Safari Digital JS/TS projects — audits npm & pnpm lockfiles
-    against the <a href="https://github.com/DataDog/malicious-software-packages-dataset">DataDog malicious packages dataset</a>.
+    Supply-chain guard for JS/TS projects : audits npm & pnpm lockfiles against the <a href="https://github.com/DataDog/malicious-software-packages-dataset">DataDog malicious packages dataset</a>.
 </p>
 
 ---
