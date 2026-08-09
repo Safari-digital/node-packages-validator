@@ -1,2 +1,4 @@
+#!/usr/bin/env node
 import PackageLock from './PackageLock.mjs';
-(async () => await PackageLock.validateAsync())();
+
+process.exitCode = (await PackageLock.validateAsync()) > 0 ? 1 : 0;

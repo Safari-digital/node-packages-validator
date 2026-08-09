@@ -1,0 +1,21 @@
+lockfileVersion: 5.4
+
+specifiers:
+  debug: ^4.3.4
+
+dependencies:
+  debug: 4.3.4
+
+packages:
+
+  /@scope/tool/2.0.0:
+    resolution: {integrity: sha512-aaa}
+    dev: true
+
+  /debug/4.3.4:
+    resolution: {integrity: sha512-bbb}
+    dev: false
+
+  /vue-eslint-parser/9.0.0_eslint@8.0.0:
+    resolution: {integrity: sha512-eee}
+    dev: true

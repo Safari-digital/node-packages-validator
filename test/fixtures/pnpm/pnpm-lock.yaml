@@ -1,0 +1,40 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      debug:
+        specifier: 4.3.4
+        version: 4.3.4
+
+packages:
+
+  '@scope/tool@2.0.0':
+    resolution: {integrity: sha512-aaa}
+
+  debug@4.3.4:
+    resolution: {integrity: sha512-bbb}
+    engines: {node: '>=6.0'}
+
+  debug@4.4.1:
+    resolution: {integrity: sha512-ccc}
+
+  left-pad@1.3.0:
+    resolution: {integrity: sha512-ddd}
+
+  tarballed@1.0.0:
+    resolution: {tarball: https://example.com/tarballed-1.0.0.tgz}
+
+  vue-eslint-parser@10.4.0(eslint@9.39.4):
+    resolution: {integrity: sha512-eee}
+
+snapshots:
+
+  debug@4.3.4: {}
+
+  only-in-snapshots@6.6.6: {}
