@@ -1,0 +1,51 @@
+{
+    "name": "node-packages-validator",
+    "version": "1.0.0",
+    "description": "Audits npm & pnpm lockfiles against the DataDog malicious packages dataset.",
+    "author": "BenoitSafari",
+    "license": "MIT",
+    "type": "module",
+    "sideEffects": false,
+    "packageManager": "pnpm@11.1.2",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Safari-digital/node-packages-validator.git"
+    },
+    "keywords": [
+        "audit",
+        "lockfile",
+        "npm",
+        "pnpm",
+        "security",
+        "supply-chain"
+    ],
+    "bin": {
+        "validate-package-lock": "./validate-package-lock.mjs"
+    },
+    "exports": {
+        ".": "./PackageLock.mjs",
+        "./logger": "./Logger.mjs",
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "PackageLock.mjs",
+        "Logger.mjs",
+        "validate-package-lock.mjs",
+        "LICENSE",
+        "README.md"
+    ],
+    "scripts": {
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "test": "node --test",
+        "validate": "node ./validate-package-lock.mjs --pnpm"
+    },
+    "devDependencies": {
+        "eslint": "9.39.4",
+        "prettier": "3.8.3",
+        "safaridigital-eslint": "github:Safari-digital/safaridigital-eslint"
+    },
+    "engines": {
+        "node": ">=20.9.0"
+    }
+}

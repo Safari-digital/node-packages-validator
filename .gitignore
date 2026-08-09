@@ -1,0 +1,9 @@
+.idea
+.vscode
+package-lock.json
+pnpm-lock.yaml
+node_modules
+
+# Lockfile fixtures are test data, not this repository's own lockfiles
+!test/fixtures/**/package-lock.json
+!test/fixtures/**/pnpm-lock.yaml
